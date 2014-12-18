@@ -50,7 +50,7 @@ module WeixinAuthorize
       end
 
       def post_to_merchant_endpoint(path, payload)
-        http_post("#{merchant_base_url}#{path}", payload, {}, 'api')
+        http_post("#{merchant_base_url}#{path}", payload.to_json, {accept: :json}, 'api')
       end
 
       def delivery_company_codes
