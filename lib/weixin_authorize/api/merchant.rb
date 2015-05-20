@@ -43,6 +43,31 @@ module WeixinAuthorize
         post_to_merchant_endpoint("/order/close", {order_id: orderid})
       end
 
+      # 1.4 查询商品
+      # https://api.weixin.qq.com/merchant/get?access_token=ACCESS_TOKEN
+      def get_product(prd_id)
+        post_to_merchant_endpoint("/get", {product_id: prd_id})
+      end
+
+      # 1.5 获取指定状态的所有商品
+      # https://api.weixin.qq.com/merchant/getbystatus?access_token=ACCESS_TOKEN
+      def get_product_by_status(status)
+        post_to_merchant_endpoint("/getbystatus", {status: status})
+      end
+
+      # 1.7 获取指定分类的所有子分类
+      # 总分类为“1”
+      # https://api.weixin.qq.com/merchatn/category/getsub?access_token=ACCESS_TOKEN
+      def get_sub_category(cat_id = 1)
+        post_to_merchant_endpoint("/category/getsub", {cate_id: cat_id})
+      end
+
+      # 1.8 获取指定子分类的所有SKU
+      # https://api.weixin.qq.com/merchant/category/getsku?access_token=ACCESS_TOKEN
+      def get_category_sku(cat_id = 1)
+        post_to_merchant_endpoint("/category/getsku", {cate_id: cat_id})
+      end
+
       private
 
       def merchant_base_url
